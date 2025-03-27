@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:week_3_blabla_project/Provider/rides_preferences_provider.dart';
 import 'repository/mock/mock_locations_repository.dart';
 import 'repository/mock/mock_rides_repository.dart';
 import 'service/locations_service.dart';
@@ -16,7 +18,21 @@ void main() {
   RidesService.initialize(MockRidesRepository());
 
   // 2- Run the UI
-  runApp(const MyApp());
+  // -------------------Properly sets up Provider at root level-----------------
+
+// -------------------Follows the MultiProvider pattern shown in requirements---------------
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => RidesPreferencesProvider(
+            repository: MockRidePreferencesRepository(),
+          ),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
