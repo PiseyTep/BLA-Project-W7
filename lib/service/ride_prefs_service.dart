@@ -55,11 +55,11 @@ class RidePrefService {
   }
 
   // Past preferences
-  List<RidePreference> getPastPreferences() {
-    return repository.getPastPreferences();
-  }
+  // List<RidePreference> getPastPreferences() {
+  //   return repository.getPastPreferences();// close for blaa202
+  // }
 
-  void addPreference(RidePreference preference) {
-    return repository.addPreference(preference);
-  }
+//   void addPreference(RidePreference preference) {
+//     return repository.addPreference(preference);// close for blaa202
+//   }
 }

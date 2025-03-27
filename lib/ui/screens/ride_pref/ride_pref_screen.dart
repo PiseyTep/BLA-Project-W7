@@ -36,7 +36,8 @@ class RidePrefScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.watch<RidesPreferencesProvider>();
     final currentRidePreference = provider.currentPreference;
-    final pastPreferences = provider.preferencesHistory;
+    //final pastPreferences = provider.preferencesHistory;//bla201
+    final pastPreferences = provider.pastPreferences; //202
 
     return Stack(
       children: [
@@ -75,11 +76,11 @@ class RidePrefScreen extends StatelessWidget {
                     child: ListView.builder(
                       shrinkWrap: true, // Fix ListView height issue
                       physics: AlwaysScrollableScrollPhysics(),
-                      itemCount: pastPreferences.length,
+                      itemCount: pastPreferences.data?.length ?? 0,
                       itemBuilder: (ctx, index) => RidePrefHistoryTile(
-                        ridePref: pastPreferences[index],
-                        onPressed: () =>
-                            onRidePrefSelected(context, pastPreferences[index]),
+                        ridePref: pastPreferences.data![index],
+                        onPressed: () => onRidePrefSelected(
+                            context, pastPreferences.data![index]),
                       ),
                     ),
                   ),
